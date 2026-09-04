@@ -48,7 +48,6 @@ To add, remove, or update dishes, edit `menu.json`. Each item follows this shape
 ## Sections to Complete
 
 - [ ] **Add a banner** — Introduce a hero/banner section (e.g. restaurant name, tagline, background image) at the top of the page, above or as part of the navbar.
-- [ ] **Responsive menu layout** — Update the menu data rendering so it displays as **cards** on laptop/desktop screens and as a **list** on mobile phones.
 
 ## Tech Stack
 
