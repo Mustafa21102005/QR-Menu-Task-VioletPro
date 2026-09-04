@@ -64,7 +64,7 @@
       <div class="navbar-center">
         <a class="btn btn-ghost text-xl">Menu</a>
       </div>
-      <div class="navbar-end">
+      <div class="navbar-end pe-2">
         <label class="swap swap-rotate">
           <!-- this hidden checkbox controls the state -->
           <input type="checkbox" class="theme-controller" value="coffee" />
@@ -100,39 +100,51 @@
       <h2 id="go-to-appitizers" class="text-4xl pb-8 font-bold text-center">
         Appitizers
       </h2>
-
       <div
         id="appetizers"
-        class="gap-8 grid lg:grid-cols-4 md:grid-cols-2 sm:grid-cols-1"
+        class="gap-8 md:grid lg:grid-cols-4 md:grid-cols-2 sm:grid-cols-1 hidden"
       ></div>
+      <ul
+        id="appetizers-list"
+        class="md:hidden list bg-base-300 rounded-box shadow-md"
+      ></ul>
 
       <!-- Main -->
       <h2 id="go-to-main" class="text-4xl py-8 font-bold text-center">Main</h2>
-
       <div
         id="main"
-        class="gap-8 grid lg:grid-cols-4 md:grid-cols-2 sm:grid-cols-1"
+        class="gap-8 md:grid lg:grid-cols-4 md:grid-cols-2 sm:grid-cols-1 hidden"
       ></div>
+      <ul
+        id="main-list"
+        class="md:hidden list bg-base-300 rounded-box shadow-md"
+      ></ul>
 
       <!-- Drinks -->
       <h2 id="go-to-drinks" class="text-4xl py-8 font-bold text-center">
         Drinks
       </h2>
-
       <div
         id="drinks"
-        class="gap-8 grid lg:grid-cols-4 md:grid-cols-2 sm:grid-cols-1"
+        class="gap-8 md:grid lg:grid-cols-4 md:grid-cols-2 sm:grid-cols-1 hidden"
       ></div>
+      <ul
+        id="drinks-list"
+        class="md:hidden list bg-base-300 rounded-box shadow-md"
+      ></ul>
 
       <!-- Desserts -->
       <h2 id="go-to-desserts" class="text-4xl py-8 font-bold text-center">
         Desserts
       </h2>
-
       <div
         id="desserts"
-        class="gap-8 grid lg:grid-cols-4 md:grid-cols-2 sm:grid-cols-1"
+        class="gap-8 md:grid lg:grid-cols-4 md:grid-cols-2 sm:grid-cols-1 hidden"
       ></div>
+      <ul
+        id="desserts-list"
+        class="md:hidden list bg-base-300 rounded-box shadow-md"
+      ></ul>
     </main>
 
     <!-- Footer -->
@@ -160,6 +172,34 @@
 
         localStorage.setItem("theme", newTheme);
       });
+
+      async function renderDishesAsList(lists, containerId) {
+        let listHTML = "";
+
+        lists.forEach(function (dish) {
+          listHTML += `
+            <li class="list-row">
+              <div class="text-4xl font-thin opacity-30 tabular-nums">${dish.id}</div>
+              <div>
+                <img
+                  class="size-10 rounded-box object-cover"
+                  alt="${dish.name}"
+                  src="${dish.image}"
+                />
+              </div>
+              <div class="list-col-grow">
+                <div>${dish.name}</div>
+                <div class="text-xs uppercase font-semibold opacity-60">
+                  ${dish.description}
+                </div>
+              </div>
+              <div class="badge badge-primary">$${dish.price}</div>
+            </li>
+          `;
+        });
+
+        document.querySelector(containerId).innerHTML = listHTML;
+      }
 
       async function renderDishes(dishes, containerId) {
         let cardsHTML = "";
@@ -232,6 +272,11 @@
 
         const response = await fetch("menu.json");
         const menuData = await response.json();
+
+        renderDishesAsList(menuData.appetizers, "#appetizers-list");
+        renderDishesAsList(menuData.main, "#main-list");
+        renderDishesAsList(menuData.drinks, "#drinks-list");
+        renderDishesAsList(menuData.desserts, "#desserts-list");
 
         renderDishes(menuData.appetizers, "#appetizers");
         renderDishes(menuData.main, "#main");
