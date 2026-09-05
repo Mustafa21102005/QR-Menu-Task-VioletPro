@@ -29,7 +29,7 @@
     </style>
   </head>
 
-  <body>
+  <body class="flex flex-col items-center">
     <!-- Navbar -->
     <div class="navbar bg-base-100 shadow-sm">
       <div class="navbar-start">
@@ -91,6 +91,19 @@
             />
           </svg>
         </label>
+      </div>
+    </div>
+
+    <!-- Banner -->
+    <div class="mt-8 mx-4 aura aura-gold">
+      <div class="card bg-base-200 w-full justify-center h-25">
+        <div class="card-body">
+          <h2 class="card-title">A Taste Worth Savoring</h2>
+          <p>
+            Thoughtfully crafted dishes, made with care — because comfort should
+            never feel ordinary.
+          </p>
+        </div>
       </div>
     </div>
 
@@ -169,7 +182,7 @@
 
       themeCheckbox.addEventListener("change", function () {
         const newTheme = themeCheckbox.checked ? "coffee" : "retro";
-
+        document.documentElement.setAttribute("data-theme", newTheme);
         localStorage.setItem("theme", newTheme);
       });
 
