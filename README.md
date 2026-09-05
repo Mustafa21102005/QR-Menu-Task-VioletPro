@@ -45,10 +45,6 @@ To add, remove, or update dishes, edit `menu.json`. Each item follows this shape
 - `id`, `name`, `description`, `price`, and `image` are required.
 - `extra` is optional — when present, it renders as a small outlined badge on the card.
 
-## Sections to Complete
-
-- [ ] **Add a banner** — Introduce a hero/banner section (e.g. restaurant name, tagline, background image) at the top of the page, above or as part of the navbar.
-
 ## Tech Stack
 
 - [Tailwind CSS](https://tailwindcss.com/) (via CDN)
